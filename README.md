@@ -1,5 +1,5 @@
 # osu! pp graph
-Creates a plot of your scores and pp over time.
+Creates a plot of your top 50 scores and pp.
 
 ![sample image](https://raw.githubusercontent.com/lekdan49/osu-score-graph/master/sample_image.png)
 
