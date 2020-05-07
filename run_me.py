@@ -26,9 +26,9 @@ def plot_graph(pp1, score_date2, user_name1):
     plt.tight_layout()
     png_saved = user_name1[0] + '.png'
     svg_saved = user_name1[0] + '.svg'
+    plt.grid('on', linestyle='--')
     plt.savefig(png_saved, dpi=300)  # saves pp graph as .png
     plt.savefig(svg_saved)  # saves an svg
-    plt.grid('on', linestyle='--')
     plt.show()
 
 
