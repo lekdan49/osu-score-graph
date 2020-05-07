@@ -11,13 +11,12 @@ def get_URL(url):
 
 
 def get_osu_id():
-    # x = str(input("Please enter your Osu! account number "
-    #
-    #               "this is the number at the #'s "
-    #
-    #               "https://osu.ppy.sh/users/##### "))
+    x = str(input("Please enter your Osu! account number "
 
-    x = "7575434"
+                  "this is the number at the #'s "
+
+                  "https://osu.ppy.sh/users/##### "))
+
     return x
 
 
@@ -34,7 +33,7 @@ def parse_json_pp(file_name):
         parsed_json = json.load(content)
         for i in parsed_json:
             # print(i['beatmapset']['title'], i['created_at'])    # Prints beatmap name and and date played.
-            x.append([i['pp']])
+            x.append(i['pp'])
 
         return x
 
@@ -47,6 +46,20 @@ def parse_json_date(file_name):
             y.append(i['created_at'])
 
         return y
+
+
+def parse_user_name(file_name):
+    y = []
+    with open(file_name, "r") as content:
+        parsed_json = json.load(content)
+        for i in parsed_json:
+            if len(y) > 0:
+                return y
+            else:
+                y.append(i['user']['username'])
+
+
+
 
 
 def write_json_to_file(json_name, created_osu_url):
@@ -63,13 +76,16 @@ def create_plot(json_name):
         pp = parse_json_pp(json_name)
         score_date = parse_json_date(json_name)
         score_date = format_score_date(score_date)
+        user_name = parse_user_name(json_name)
+
         # print(pp)
         # print(score_date)
+        # print(user_name)
         if len(pp) != len(score_date):
             print("Error! lists not equal! ")
         else:
             print("Lists seem good! proceeding with graph! ")
-        return pp, score_date
+        return pp, score_date, user_name
 
 
 def format_score_date(score_date):
@@ -96,9 +112,9 @@ def main():
 
         write_json_to_file(json_name, created_osu_url)
 
-    pp, score_date = create_plot(json_name)
+    pp, score_date, user_name = create_plot(json_name)
 
-    return pp, score_date
+    return pp, score_date, user_name
 
 
 

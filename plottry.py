@@ -1,16 +1,44 @@
 from matplotlib import pyplot as plt
+
 import scraper
 
 
-pp, score_date = scraper.main()
+def set_sizes():
+    fig_size = plt.rcParams["figure.figsize"]
+    print("Current size:", fig_size)  # prints default res witch is 640 x 480
+    fig_size[0] = 20  # sets resolution on x axis to 2000
+    fig_size[1] = 6.4  # sets resolution on y axis to 640
+    print("Current size:", fig_size)  # prints current resolution which is 2000 x 640
 
-print(pp)
-print(score_date)
+    plt.tick_params(axis='x', which='major', labelsize=5)  # change x axis font
+    plt.tick_params(axis='x', which='minor', labelsize=4)  # change x axis font
 
 
+def plot_graph(pp1, score_date2, user_name1):
+    plt.plot(pp1, score_date2, label=user_name1[0])  # plots the graph
+
+    plt.title('PP scores over time for top 50 scores ')
+    plt.xlabel('Date of score ')
+    plt.ylabel('PP value ')
+
+    plt.legend()  # actually print the legend
+
+    plt.savefig('pp_graph.png', dpi=300)  # saves pp graph as .png
+    plt.savefig("graph.svg")  # saves an svg
+    plt.show()
 
 
-plt.plot(pp, score_date)
+def main():
+    pp1, score_date2, user_name1 = scraper.main()
 
-plt.show()
+    pp1, score_date2 = zip(*sorted(zip(score_date2, pp1)))  # sorts dates and pp
 
+    print(pp1)
+    print(score_date2)
+
+    set_sizes()
+    plot_graph(pp1, score_date2, user_name1)
+
+
+if __name__ == '__main__':
+    main()
