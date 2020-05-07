@@ -21,12 +21,12 @@ def plot_graph(pp1, score_date2, user_name1):
     plt.title('PP scores over time for top 50 scores ')
     plt.xlabel('Date of score ')
     plt.ylabel('PP value ')
-
     plt.legend()  # actually print the legend
+    plt.grid('on', linestyle='--')
     plt.tight_layout()
     png_saved = user_name1[0] + '.png'
     svg_saved = user_name1[0] + '.svg'
-    plt.grid('on', linestyle='--')
+
     plt.savefig(png_saved, dpi=300)  # saves pp graph as .png
     plt.savefig(svg_saved)  # saves an svg
     plt.show()
