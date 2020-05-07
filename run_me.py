@@ -4,7 +4,7 @@ import scraper
 
 
 def set_sizes():
-    fig_size = plt.rcParams["figure.figsize"]
+    fig_size = plt.rcParams['figure.figsize']
     # print("Current size:", fig_size)  # prints default res witch is 640 x 480
     fig_size[0] = 20  # sets resolution on x axis to 2000
     fig_size[1] = 6.4  # sets resolution on y axis to 640

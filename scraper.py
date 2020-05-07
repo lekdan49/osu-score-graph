@@ -29,7 +29,7 @@ def create_osu_url(osu_id):
 def parse_json_pp(file_name):
     x = []
 
-    with open(file_name, "r") as content:
+    with open(file_name, 'r') as content:
         parsed_json = json.load(content)
         for i in parsed_json:
             # print(i['beatmapset']['title'], i['created_at'])    # Prints beatmap name and and date played.
@@ -40,7 +40,7 @@ def parse_json_pp(file_name):
 
 def parse_json_date(file_name):
     y = []
-    with open(file_name, "r") as content:
+    with open(file_name, 'r') as content:
         parsed_json = json.load(content)
         for i in parsed_json:
             y.append(i['created_at'])
@@ -50,7 +50,7 @@ def parse_json_date(file_name):
 
 def parse_user_name(file_name):
     y = []
-    with open(file_name, "r") as content:
+    with open(file_name, 'r') as content:
         parsed_json = json.load(content)
         for i in parsed_json:
             if len(y) > 0:
@@ -63,13 +63,13 @@ def parse_user_name(file_name):
 
 
 def write_json_to_file(json_name, created_osu_url):
-    with open(json_name, "w") as json_output:  # When using 'with' we don't need to close the file! "
+    with open(json_name, 'w') as json_output:  # When using 'with' we don't need to close the file! "
 
         json.dump(get_URL(created_osu_url), json_output)
 
 
 def create_plot(json_name):
-    if json_name in glob.glob("*.json"):
+    if json_name in glob.glob('*.json'):
 
         print("ID already queried, parsing json... ")
 
@@ -105,9 +105,9 @@ def main():
 
     # print(created_osu_url)
 
-    json_name = osu_id + ".json"
+    json_name = osu_id + '.json'
 
-    if json_name not in glob.glob("*.json"):
+    if json_name not in glob.glob('*.json'):
         print("new ID, getting scores...")
 
         write_json_to_file(json_name, created_osu_url)
